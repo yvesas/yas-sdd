@@ -1,11 +1,15 @@
 # Estado
 
-> Só o que está **aberto**. O que fecha sai daqui: feature entregue vai para
+> Só o que está **aberto**. O que fecha sai daqui: feature aceita vai para
 > o ROADMAP, decisão vira registro em `docs/adr/`, lição vai para o HANDOFF.
 
-**Atualizado em:** 2026-11-18
+**Atualizado em:** 2026-11-22
 
 ## Em andamento
+
+_nada_
+
+## Aguardando aceite
 
 _nada_
 

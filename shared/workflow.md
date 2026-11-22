@@ -14,12 +14,16 @@
 | planejar | `specs/NNN-nome/plan.md` | a spec da feature |
 | dividir em tarefas | `specs/NNN-nome/tasks.md` | o plano da feature |
 | implementar | código e testes | as tarefas da feature |
+| aceitar | `specs/NNN-nome/acceptance.md` | a feature implementada |
 
 A coluna da direita é a **guarda** de cada passo. Sem o arquivo, o passo não
 começa: diga qual passo vem antes e pare.
 
+Feature só vai para "Entregue" com o aceite registrado — ver a seção 7.
+
 Mudança pequena — até uns três arquivos, sem decisão nova — não precisa do
-caminho inteiro. Mas continua valendo a constituição.
+caminho inteiro. Mas continua valendo a constituição, e continua valendo o
+aceite, numa linha só.
 
 Conferir é um passo à parte, que pode rodar a qualquer momento depois que há
 constituição ou código:
@@ -60,6 +64,11 @@ Requisito recebe `REQ-001`, decisão recebe `D-001`, numerados dentro da
 feature. O plano e as tarefas citam o identificador de onde vieram. É o que
 permite responder "por que isto existe?" seis meses depois.
 
+Todo requisito diz também **como a pessoa confere** que ele foi cumprido:
+passos que ela segue usando o produto, sem ler código, e o que ela deve ver
+no fim. É disso que o aceite é feito — ver a seção 7. Requisito que ninguém
+consegue conferir ainda não está escrito.
+
 ## 5. `specs/` é o plano, `docs/` é o que existe
 
 `specs/` muda o tempo todo. `docs/` descreve o sistema como ele é e muda
@@ -80,10 +89,60 @@ e vai para o destino dele:
 
 | Item fechado | Destino |
 |---|---|
-| feature entregue | uma linha em "Entregue", no `ROADMAP.md` |
+| feature aceita | uma linha em "Entregue", no `ROADMAP.md` |
 | decisão que continua valendo | um registro em `docs/adr/` |
 | decisão pequena | uma linha em `docs/decisions.md` |
 | lição aprendida | `HANDOFF.md` |
 | bloqueio resolvido, tarefa feita | removido |
 
+Feature implementada e ainda não aceita **não fechou**: fica em "Aguardando
+aceite", no `STATE.md`, até a pessoa conferir.
+
 Arquivo lido toda sessão custa contexto toda sessão. Passou do teto, avise.
+
+## 7. O aceite
+
+Aceite — em inglês, UAT, *User Acceptance Testing* — é o momento em que a
+**pessoa que pediu** usa o que foi feito e diz se é aquilo. Teste automático
+confere que o código faz o que o código diz; o aceite confere que o código faz
+o que a pessoa queria.
+
+**Quando.** Assim que a implementação termina, a feature entra em "Aguardando
+aceite" no `STATE.md`, com a pasta e a data. Ela sai de lá só de dois jeitos:
+aceita, ou dispensada por escrito.
+
+**Como.** O agente monta o roteiro a partir dos requisitos da spec: para cada
+`REQ`, os passos de "como a pessoa confere" e o que ela deve ver. A pessoa
+segue e responde, item por item.
+
+**O agente nunca dá o aceite.** Ele prepara o roteiro, registra o que a pessoa
+respondeu e para. "Os testes passaram" não é aceite. Sem resposta da pessoa,
+a feature continua aguardando.
+
+**O registro**, em `specs/NNN-nome/acceptance.md`:
+
+```markdown
+# Aceite — NNN-nome
+
+**Conferido por:** <quem> · **em:** <AAAA-MM-DD>
+
+| Requisito | Resultado | Observação |
+|---|---|---|
+| REQ-001 | passou | |
+| REQ-002 | falhou | <o que a pessoa viu> |
+
+**Decisão:** aceita · não aceita · dispensada
+```
+
+**O que falhou volta.** Cada item que falhou vira tarefa nova em `tasks.md`,
+citando o `REQ`, e a feature continua em "Aguardando aceite". Depois da
+correção, confere-se de novo o que falhou — e acrescenta-se uma linha nova à
+tabela, sem apagar a anterior.
+
+**Dispensar pode, em silêncio não.** Se a pessoa decide pular o aceite, o
+arquivo diz: dispensada por quem, e por quê. Quem dispensa é a pessoa, nunca
+o agente.
+
+**Mudança pequena** não ganha arquivo: o aceite é uma linha no `STATE.md` até
+a pessoa responder, e a resposta vai na mensagem do commit ou na descrição do
+pull request.

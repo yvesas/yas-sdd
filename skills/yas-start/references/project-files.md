@@ -9,7 +9,7 @@
 ```markdown
 # Estado
 
-> Só o que está **aberto**. O que fecha sai daqui: feature entregue vai para
+> Só o que está **aberto**. O que fecha sai daqui: feature aceita vai para
 > o ROADMAP, decisão vira registro em `docs/adr/`, lição vai para o HANDOFF.
 
 **Atualizado em:** <AAAA-MM-DD>
@@ -17,6 +17,13 @@
 ## Em andamento
 
 _nada ainda_
+
+## Aguardando aceite
+
+> Feature implementada que a pessoa ainda não conferiu. Só sai daqui aceita,
+> ou dispensada por escrito — nunca pelo agente.
+
+_nada_
 
 ## Bloqueios
 

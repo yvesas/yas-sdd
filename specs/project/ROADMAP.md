@@ -13,6 +13,12 @@
 
 1. **Fluxo:** `/yas-specify`, `/yas-plan` (com o gate de constituição),
    `/yas-tasks`, `/yas-implement`, `/yas` (roteador), `/yas-state`.
+   Todas seguem o aceite da seção 7 do `shared/workflow.md`:
+   `/yas-specify` escreve "como a pessoa confere" em cada requisito,
+   `/yas-implement` termina deixando a feature em "Aguardando aceite", e
+   `/yas-state` cobra o que está parado lá. Se o roteiro de aceite ganha
+   skill própria ou fica dentro de `/yas-state`, decide-se ao escrever o
+   fluxo.
 2. **Git e CI:** `/yas-commit`, `/yas-pr`, `/yas-quick`; guias de git e de CI;
    receitas de workflow; as duas travas opcionais (mensagem de commit e
    arquivo de ambiente).

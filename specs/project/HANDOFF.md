@@ -22,8 +22,10 @@ mkdir /tmp/teste && cd /tmp/teste && git init
 
 ## Próximo passo
 
-Rodar `/yas-start` e depois `/yas-constitution` num projeto descartável, ler
-o que cada uma fez, e só então escrever as primeiras fixtures de eval.
+Num projeto descartável, levar uma feature pequena pelo caminho inteiro —
+`/yas-start`, `/yas-constitution`, `/yas-specify`, `/yas-plan`, `/yas-tasks`,
+`/yas-implement`, `/yas-accept` —, ler o que cada uma gravou e conferir se a
+guarda da seguinte aceita. Só então escrever as primeiras fixtures de eval.
 
 ## O que aprendemos errando
 

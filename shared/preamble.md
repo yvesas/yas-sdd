@@ -80,7 +80,7 @@ Ferramenta que não está instalada não conta como verificação feita.
 |---|---|
 | `specs/constitution.md` | as leis do projeto |
 | `specs/project/` | estado, retomada, roadmap e visão |
-| `specs/NNN-nome/` | uma feature: `spec.md`, `plan.md`, `tasks.md` |
+| `specs/NNN-nome/` | uma feature: `spec.md`, `plan.md`, `tasks.md`, `acceptance.md` |
 
 Relatórios de conferência também ficam em `specs/project/`.
 

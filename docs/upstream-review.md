@@ -36,6 +36,22 @@
 - o funil de descoberta antes da especificação — a ideia de que encerrar uma
   ideia com motivo é um bom resultado.
 
+### 2026-11-22 — skills do fluxo, sem nova leitura do upstream
+
+Escritas com base na revisão de 2026-11-17; o Spec Kit não foi relido.
+
+**Trazido**, como ideia e com texto próprio:
+
+| O quê | Para onde |
+|---|---|
+| esclarecer a spec antes do plano, com perguntas que mudam a spec | `yas-specify`, `references/clarify.md`; marca `[A ESCLARECER]` que trava o plano |
+| conferir consistência entre spec, plano e tarefas | `yas-tasks`, passo "Cruzar" |
+| o portão da constituição no plano | `yas-plan`, `references/constitution-gate.md` |
+
+**Acrescentado, sem equivalente lá:** o aceite (`yas-accept`) como passo
+depois de implementar, com o critério de conferência escrito em cada
+requisito desde a spec.
+
 ## Cloudflare security-audit-skill
 
 https://github.com/cloudflare/security-audit-skill · licença MIT

@@ -1,0 +1,116 @@
+#!/usr/bin/env bash
+# Instala as skills deste pack. Bash puro: não precisa de Node, Python nem de
+# nada além do que já vem com o git.
+#
+#   bin/install <projeto>          → <projeto>/.claude/skills   (o padrão)
+#   bin/install --user             → ~/.claude/skills (ou $CLAUDE_CONFIG_DIR/skills)
+#   bin/install --target <pasta>   → uma pasta de skills qualquer
+#   bin/install --check <projeto>  → mostra o que mudaria, sem escrever
+#
+# Por que no projeto, e não no usuário: o método viaja com o repositório. Quem
+# clona — outra pessoa, outra máquina, uma plataforma que trabalha sobre o
+# mesmo repo — encontra as mesmas skills.
+#
+# O instalador só escreve dentro da pasta de skills. Nunca toca em `specs/`,
+# nem em arquivo nenhum do projeto: preparar o projeto é trabalho da skill de
+# início, que pergunta antes.
+#
+# Cada skill declara no frontmatter o que precisa (`shared: [...]`,
+# `references: [...]`) e recebe só isso. Os arquivos de `shared/` são copiados
+# para dentro de cada skill: uma fonte no repositório, cópias sobrescritas a
+# cada instalação.
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+target=""
+check_only=false
+
+usage() {
+  sed -n '2,9p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'
+}
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --check) check_only=true ;;
+    --user) target="${CLAUDE_CONFIG_DIR:-$HOME/.claude}/skills" ;;
+    --target)
+      shift
+      [ -n "${1:-}" ] || { echo "⛔ --target exige uma pasta" >&2; exit 1; }
+      target="$1"
+      ;;
+    -h | --help) usage; exit 0 ;;
+    -*) echo "⛔ opção desconhecida: $1" >&2; exit 1 ;;
+    *)
+      [ -d "$1" ] || { echo "⛔ '$1' não existe" >&2; exit 1; }
+      target="$(cd "$1" && pwd)/.claude/skills"
+      ;;
+  esac
+  shift
+done
+
+if [ -z "$target" ]; then
+  echo "⛔ diga onde instalar." >&2
+  echo >&2
+  usage >&2
+  exit 1
+fi
+
+changed=0
+unchanged=0
+
+copy() {
+  src="$1"; dst="$2"; rel="${dst#"$target"/}"
+  # Declarado no frontmatter e ausente no repositório é defeito do pack. Parar
+  # aqui é melhor que instalar uma skill que manda ler um arquivo que não veio.
+  [ -f "$src" ] || { echo "⛔ falta no pack: ${src#"$ROOT"/}" >&2; exit 1; }
+  if [ -f "$dst" ] && cmp -s "$src" "$dst"; then
+    unchanged=$((unchanged + 1))
+    return 0
+  fi
+  if [ -f "$dst" ]; then echo "  ~ $rel"; else echo "  + $rel"; fi
+  changed=$((changed + 1))
+  if [ "$check_only" = false ]; then
+    mkdir -p "$(dirname "$dst")"
+    cp "$src" "$dst"
+  fi
+}
+
+# `chave: [a, b,` … `c]` → um nome por linha. A lista pode quebrar em várias
+# linhas, então lê da chave até o colchete que fecha.
+list_of() {
+  key="$1"; file="$2"
+  awk -v key="$key" '
+    $0 ~ "^" key ":" { on = 1 }
+    on { buf = buf " " $0 }
+    on && /\]/ { exit }
+    END { print buf }
+  ' "$file" | sed -e 's/^[^[]*\[//' -e 's/\].*$//' | tr ',' '\n' | tr -d ' \t'
+}
+
+echo "yas-sdd $(cat "$ROOT/VERSION" 2>/dev/null || echo '?') → $target"
+[ "$check_only" = true ] && echo "(modo --check: nada será escrito)"
+echo
+
+for dir in "$ROOT"/skills/*/; do
+  dir="${dir%/}"
+  name="$(basename "$dir")"
+  copy "$dir/SKILL.md" "$target/$name/SKILL.md"
+
+  for item in $(list_of shared "$dir/SKILL.md"); do
+    copy "$ROOT/shared/$item.md" "$target/$name/$item.md"
+  done
+
+  for item in $(list_of references "$dir/SKILL.md"); do
+    copy "$dir/references/$item.md" "$target/$name/references/$item.md"
+  done
+done
+
+echo
+if [ "$changed" -eq 0 ]; then
+  echo "✓ já está em dia ($unchanged arquivos)"
+elif [ "$check_only" = true ]; then
+  echo "→ $changed arquivo(s) mudariam · $unchanged em dia"
+else
+  echo "✓ $changed arquivo(s) instalados · $unchanged já estavam em dia"
+  echo "  Abra uma sessão nova do agente e rode /yas-start."
+fi

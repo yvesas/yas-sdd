@@ -1,0 +1,99 @@
+yas-sdd
+=======
+
+Este projeto é distribuído sob a licença MIT (ver LICENSE).
+
+Ele é baseado em trabalho de terceiros. O que foi adaptado, e de onde:
+
+
+GitHub Spec Kit — https://github.com/github/spec-kit
+----------------------------------------------------
+
+Revisado na versão 1.4.1. Licença MIT, Copyright GitHub, Inc.
+
+Vêm do Spec Kit, como ideia e como forma:
+
+  - o conceito de uma constituição que governa os planos de um projeto, com
+    princípios, seção de governança e versão semântica;
+  - a sequência especificar → planejar → dividir em tarefas → implementar;
+  - o formato de pasta de uma feature: specs/NNN-nome/ com spec.md, plan.md
+    e tasks.md.
+
+Nenhum arquivo do Spec Kit é distribuído aqui. O modelo de constituição em
+skills/yas-constitution/references/template.md adapta a estrutura do modelo
+de constituição do Spec Kit; o texto dos princípios é próprio.
+
+O registro do que foi trazido e do que foi recusado em cada revisão fica em
+docs/upstream-review.md.
+
+Texto da licença do Spec Kit:
+
+  MIT License
+
+  Copyright GitHub, Inc.
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+
+
+Cloudflare security-audit-skill — https://github.com/cloudflare/security-audit-skill
+---------------------------------------------------------------------------------
+
+Revisado no commit de 2026-09-14. Licença MIT, Copyright (c) 2025-2026
+Cloudflare, Inc.
+
+A skill skills/yas-audit adapta ideias de lá, com texto próprio:
+
+  - a separação entre o que está confirmado e o que precisa de validação,
+    em que o segundo diz o fato exato que falta e não recebe gravidade;
+  - não presumir, para nenhum lado, um controle que não aparece no
+    repositório;
+  - não descrever um achado com palavra mais forte que o fato;
+  - a menor correção que resolve, descrita e não aplicada;
+  - auditoria parcial que se apresenta como parcial;
+  - o modo de orientação, em que carregar a skill não autoriza criar
+    arquivos.
+
+A skill skills/yas-security adapta, também com texto próprio:
+
+  - a exigência de que todo achado nomeie quem age, por onde, que controle
+    deveria barrar, que fronteira é cruzada e com que resultado;
+  - a tentativa de derrubar cada candidato antes de relatar, delegada a um
+    agente novo quando possível;
+  - os três vereditos e as âncoras de gravidade, traduzidas e resumidas;
+  - as regras de só ler, não testar nada no ar e não expor segredo;
+  - a separação entre vulnerabilidade e observação de boa prática.
+
+Nenhum arquivo da Cloudflare é distribuído aqui. A licença é a mesma MIT
+cujo texto está reproduzido acima, com o aviso de copyright desta seção.
+
+
+yas-canvas — https://github.com/yvesas/yas-canvas
+--------------------------------------------------
+
+Licença MIT, do mesmo autor. Vêm de lá a estrutura do pack (skills com
+frontmatter declarando shared e references), o instalador e a validação
+estática, adaptados.
+
+
+Como registrar uma fonte nova
+-----------------------------
+
+Todo trecho copiado ou adaptado de um projeto aberto entra aqui, com o nome,
+o endereço, a versão ou a data, a licença e o que foi trazido. Sem licença
+compatível confirmada, a ideia é reescrita com palavras próprias.

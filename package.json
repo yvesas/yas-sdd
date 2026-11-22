@@ -1,0 +1,11 @@
+{
+  "name": "yas-sdd",
+  "version": "0.1.0",
+  "description": "Skills de método para desenvolvimento guiado por especificação, com constituição em camadas.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node scripts/check.mjs"
+  }
+}

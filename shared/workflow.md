@@ -69,6 +69,10 @@ passos que ela segue usando o produto, sem ler código, e o que ela deve ver
 no fim. É disso que o aceite é feito — ver a seção 7. Requisito que ninguém
 consegue conferir ainda não está escrito.
 
+Requisito que sai da feature não é apagado nem renumerado: fica riscado na
+spec, com o motivo. **Requisito riscado não conta** — não pede linha no plano,
+tarefa nem item no aceite.
+
 ## 5. `specs/` é o plano, `docs/` é o que existe
 
 `specs/` muda o tempo todo. `docs/` descreve o sistema como ele é e muda
@@ -124,25 +128,32 @@ a feature continua aguardando.
 ```markdown
 # Aceite — NNN-nome
 
-**Conferido por:** <quem> · **em:** <AAAA-MM-DD>
+## Rodada de <AAAA-MM-DD> — conferido por <quem>
 
 | Requisito | Resultado | Observação |
 |---|---|---|
 | REQ-001 | passou | |
 | REQ-002 | falhou | <o que a pessoa viu> |
+| REQ-003 | não conferido | <por quê> |
 
-**Decisão:** aceita · não aceita · dispensada
+**Decisão:** <aceita · não aceita · em aberto · dispensada>
 ```
 
 **O que falhou volta.** Cada item que falhou vira tarefa nova em `tasks.md`,
 citando o `REQ`, e a feature continua em "Aguardando aceite". Depois da
-correção, confere-se de novo o que falhou — e acrescenta-se uma linha nova à
-tabela, sem apagar a anterior.
+correção, confere-se de novo — numa rodada nova, acrescentada ao fim do
+arquivo, sem apagar a anterior. Item `não conferido` deixa a decisão em
+aberto: nada falhou, mas a feature também não foi aceita.
 
 **Dispensar pode, em silêncio não.** Se a pessoa decide pular o aceite, o
 arquivo diz: dispensada por quem, e por quê. Quem dispensa é a pessoa, nunca
 o agente.
 
-**Mudança pequena** não ganha arquivo: o aceite é uma linha no `STATE.md` até
-a pessoa responder, e a resposta vai na mensagem do commit ou na descrição do
-pull request.
+**Mudança pequena** não ganha arquivo. Quem a termina — qualquer agente,
+com ou sem skill — acrescenta em "Aguardando aceite" do `STATE.md` uma linha
+neste formato, e ela fica lá até a pessoa responder:
+
+`mudança: <o que mudou, numa frase> — <AAAA-MM-DD>`
+
+A resposta da pessoa vai na mensagem do commit ou na descrição do pull
+request.

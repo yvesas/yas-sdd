@@ -24,8 +24,16 @@ _nenhum_
 
 ## A confirmar
 
-- **Nenhuma skill foi rodada numa sessão real.** As quatro passam na
-  validação estática e nada além disso.
+- **Nenhuma skill foi rodada numa sessão real.** As onze passam na
+  validação estática e nada além disso. As sete do fluxo (2026-11-22) também
+  nunca passaram uma pela outra: o que uma grava é o que a seguinte confere
+  na guarda, e isso só uma feature inteira prova.
+- **`/yas-implement` declara `Bash` sem restrição**, porque precisa rodar os
+  comandos do projeto. Conferir se o agente pede permissão a cada comando e
+  se isso atrapalha quem é leigo.
+- **O aceite depende da pessoa conseguir abrir o produto.** A `/yas-accept`
+  lê "Religar o ambiente" do `HANDOFF.md`; num projeto sem isso escrito, ver
+  como ela se sai.
 - **`/yas-audit` e `/yas-security` declaram comandos de consulta ao git em
   `allowed-tools`.** Conferir se a sintaxe é aceita pelo agente.
 - **`/yas-security` manda delegar a um agente novo** a tentativa de derrubar

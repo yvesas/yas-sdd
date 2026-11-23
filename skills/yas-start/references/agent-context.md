@@ -31,6 +31,10 @@ Este projeto segue especificação antes de código.
   código dela.
 - Mudança que não cabe em nenhuma spec é pequena o bastante para não precisar
   de uma, ou precisa de uma antes de começar. Pergunte qual dos dois.
+- **Nada está entregue sem o aceite da pessoa** — ela usa o que foi feito e
+  diz se é aquilo; o agente nunca se aprova. Mudança pequena terminada entra
+  em "Aguardando aceite" do `STATE.md` como
+  `mudança: <o que mudou> — <AAAA-MM-DD>`.
 <!-- yas-sdd:end -->
 ```
 

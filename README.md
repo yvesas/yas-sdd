@@ -4,21 +4,23 @@ Um jeito de construir software com IA **começando pela especificação**, e sob
 regras que você mesmo escreveu.
 
 O `yas-sdd` é um conjunto de *skills* — arquivos de instrução que o seu agente
-de IA lê e segue. Ele conduz você, por conversa, a três coisas:
+de IA lê e segue. Ele conduz você, por conversa, a quatro coisas:
 
 1. uma **constituição**: as leis do seu projeto, que todo plano precisa
    respeitar;
 2. uma **especificação** por feature: o que vai ser construído e por quê,
    antes de qualquer código;
-3. um **estado** do projeto que cabe numa tela, para você — ou o agente —
+3. um **aceite** por feature: o momento em que você usa o que foi feito e diz
+   se é aquilo — o agente nunca se aprova sozinho;
+4. um **estado** do projeto que cabe numa tela, para você — ou o agente —
    retomar o trabalho sem reler tudo.
 
 Não tem nada para instalar além das próprias skills: sem Node, sem Python,
 sem linha de comando própria. É texto, e quem trabalha é o agente.
 
-> **Estado: versão 0.1, em construção.** Hoje existem o início do projeto, a
-> constituição, a auditoria e a revisão de segurança. Especificar, planejar, dividir em tarefas e implementar chegam
-> nas próximas versões — veja [o que existe hoje](#o-que-existe-hoje).
+> **Estado: em construção.** O caminho inteiro está escrito — do início do
+> projeto ao aceite —, mas as skills ainda não foram rodadas em sessão real
+> nem medidas. Veja [o que existe hoje](#o-que-existe-hoje).
 
 ## Para quem é
 
@@ -56,8 +58,15 @@ Depois de instalar, abra uma sessão nova do agente e rode:
 
 | Skill | O que faz |
 |---|---|
+| `/yas` | Olha onde o projeto está e diz qual é o próximo passo. Não escreve nada. |
 | `/yas-start` | Prepara o projeto: descobre de onde você está partindo e cria os arquivos de estado. |
 | `/yas-constitution` | Entrevista você e escreve a constituição. Em projeto que já existe, reconhece as regras que ele já pratica. |
+| `/yas-specify` | Escreve a spec de uma feature por conversa: o problema, o que a pessoa passa a conseguir fazer e, para cada requisito, como você confere que funcionou. |
+| `/yas-plan` | Decide como construir: cada decisão com o motivo, onde cada requisito é atendido, e o plano conferido contra a constituição. |
+| `/yas-tasks` | Quebra o plano em tarefas pequenas, cada uma com o seu teste e um "pronto quando" que se confere. |
+| `/yas-implement` | Faz as tarefas uma por vez, roda os testes de cada uma e para quando o plano não basta, em vez de improvisar. |
+| `/yas-accept` | O aceite: monta o roteiro a partir da spec, você confere no produto, e o que falhou volta como tarefa. |
+| `/yas-state` | Mostra o que está aberto e o que espera o seu aceite, arruma o estado e deixa o próximo passo escrito ao pausar. |
 | `/yas-audit` | Confere se o repositório cumpre a constituição e mostra o que falta, com a menor correção para cada ponto. Só lê; não altera nada. |
 | `/yas-security` | Lê o código e a configuração procurando onde alguém consegue fazer o que não deveria: injeção, login, um cliente vendo dado de outro, segredo exposto, IA, CI. É um primeiro olhar, não um teste de invasão. |
 
@@ -90,8 +99,9 @@ de lá. Os arquivos que o `yas-sdd` gera usam o mesmo formato de pasta, então
 quem quiser adotar o Spec Kit depois aproveita o que já escreveu.
 
 O que o `yas-sdd` faz de diferente: não tem ferramenta para instalar, é
-conduzido por conversa, é escrito em português, e a constituição nasce de uma
-entrevista sobre o seu produto em vez de um modelo em branco.
+conduzido por conversa, é escrito em português, a constituição nasce de uma
+entrevista sobre o seu produto em vez de um modelo em branco, e toda feature
+termina num aceite seu — a sequência ganha um passo depois de implementar.
 
 A auditoria e a revisão de segurança adaptam ideias da
 [skill de auditoria de segurança da Cloudflare](https://github.com/cloudflare/security-audit-skill),

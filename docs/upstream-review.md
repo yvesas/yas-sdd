@@ -149,3 +149,43 @@ qualquer skill de terceiros antes de instalar, as deste pack incluídas.
 
 **Licença:** Apache 2.0 pede mais que a MIT ao adaptar texto (aviso de
 mudanças, cópia da licença). Usar como ferramenta não gera obrigação.
+
+## Ferramentas de segurança indicadas pela `yas-security`
+
+### 2026-11-23 — lista de indicação, sem adaptar texto
+
+Nenhuma ideia nem texto foi trazido destas ferramentas: elas são **citadas**
+em `skills/yas-security/references/tools.md`, para o agente de quem usa
+indicar no máximo duas no fim da revisão. Por isso não entram no `NOTICE`.
+É o "guia de segurança" que a seção da Cloudflare deixou para depois.
+
+Conferidas no GitHub nesta data — existem, são mantidas e são dos donos
+que dizem ser:
+
+| Ferramenta | Repositório | Grupo |
+|---|---|---|
+| Semgrep | `semgrep/semgrep` | lendo o código |
+| TruffleHog | `trufflesecurity/trufflehog` | lendo o código |
+| Trivy | `aquasecurity/trivy` | lendo o código |
+| Claude Code Security Review | `anthropics/claude-code-security-review` | lendo o código, no CI |
+| Codex Security | `openai/codex-security` | lendo o código |
+| Strix | `usestrix/strix` | atacando o sistema rodando |
+| Nuclei | `projectdiscovery/nuclei` | atacando o sistema rodando |
+| PyRIT | `microsoft/PyRIT` | atacando o sistema rodando |
+| ClamAV | `Cisco-Talos/clamav` | outros casos: upload |
+| SkillSpector | `NVIDIA/SkillSpector` | outros casos: skills de terceiros |
+
+**Regras da indicação**, para não ferir a regra de ouro: a skill não roda
+nem instala nenhuma; quem decide é a pessoa; as que atacam o sistema
+rodando vêm sempre com o aviso de que só valem em ambiente próprio, com
+autorização; e a skill aponta o endereço, sem comando de instalação
+escrito de memória.
+
+**Recusado:** `qybaihe/bla` (Blind LLM Agents) — protege binário e bundle
+contra engenharia reversa por IA. Não ajuda a achar falha no produto, e é
+projeto de um mantenedor só, recente.
+
+**Atenção para a próxima revisão:** a lista chegou por um post de rede
+social em que dois links usavam o domínio `lnkd.id` no lugar do encurtador
+oficial `lnkd.in`. Endereço de ferramenta entra aqui conferido direto no
+GitHub, nunca copiado de post.

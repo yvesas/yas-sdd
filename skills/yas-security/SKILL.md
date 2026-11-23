@@ -1,7 +1,7 @@
 ---
 name: yas-security
 shared: [preamble, workflow]
-references: [domains, report]
+references: [domains, report, tools]
 description: >
   Revisão de segurança do código e da configuração do projeto: procura, lendo
   o repositório, onde alguém consegue fazer o que não deveria — injeção de
@@ -74,7 +74,8 @@ Depois, leia os dois arquivos ao lado deste — `preamble.md` e `workflow.md`.
 | 5 | Tentar derrubar a afirmação | aqui |
 | 6 | Veredito, gravidade e a menor correção | `references/report.md` |
 | 7 | Onde gravar — pergunta obrigatória | aqui |
-| 8 | Fechamento | `preamble.md` |
+| 8 | Para ir além da leitura — ferramentas opcionais | `references/tools.md` |
+| 9 | Fechamento | `preamble.md` |
 
 ### 1. Reconhecimento
 
@@ -180,6 +181,15 @@ versionado — nem no estado do projeto.
 Na resposta A, depois de gravar, ofereça registrar no estado do projeto só
 **a contagem** e o caminho do relatório, nunca os detalhes.
 
+### 8. Para ir além da leitura
+
+Leia `references/tools.md`. Há ferramentas abertas que fazem o que esta
+leitura não faz: varrer o histórico atrás de segredo, conferir dependências,
+atacar uma cópia do app rodando. Indique **no máximo duas**, as que o mapa
+justifica, e pergunte se vale a pena.
+
+**Você não roda nem instala nenhuma.** Quem decide e roda é a pessoa.
+
 ## O que esta skill não faz
 
 - **Não é teste de invasão** e não substitui uma revisão profissional. Se o
@@ -188,7 +198,8 @@ Na resposta A, depois de gravar, ofereça registrar no estado do projeto só
   dedicada antes de crescer.
 - **Não confere se há falha conhecida nas dependências**: isso depende de uma
   base atualizada, fora do repositório. Vai para `a confirmar`, com o comando
-  de auditoria do gerenciador de pacotes que o projeto usa.
+  de auditoria do gerenciador de pacotes que o projeto usa — e uma ferramenta
+  de `references/tools.md`, se o passo 8 a indicar.
 - Não vê o que está configurado na plataforma — só o que está em arquivo.
 - Não confere regra da constituição: isso é `/yas-audit`.
 - **Nunca diz "está seguro".** No máximo: "nos domínios revisados, não
@@ -204,6 +215,8 @@ Na resposta A, depois de gravar, ofereça registrar no estado do projeto só
 - [ ] A gravidade passa do resultado que você mostrou?
 - [ ] A cobertura diz o que **não** foi revisado?
 - [ ] Você perguntou se o repositório é público antes de gravar?
+- [ ] Indicou no máximo duas ferramentas, sem rodar nenhuma, e com o aviso de
+  autorização para as que atacam o sistema rodando?
 
 ## Fechamento
 
